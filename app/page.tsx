@@ -3,9 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import FadeIn from "@/components/FadeIn";
-import StatsBar from "@/components/StatsBar";
-import Testimonials from "@/components/Testimonials";
-import TrustedBy from "@/components/TrustedBy";
 
 const services = [
   {
@@ -98,9 +95,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trusted By */}
-      <TrustedBy />
-
       {/* About Preview */}
       <section className="section-padding bg-white">
         <div className="max-w-5xl mx-auto text-center">
@@ -129,9 +123,6 @@ export default function HomePage() {
           </FadeIn>
         </div>
       </section>
-
-      {/* Stats */}
-      <StatsBar />
 
       {/* Services */}
       <section className="section-padding bg-gray-50">
@@ -218,9 +209,6 @@ export default function HomePage() {
           </FadeIn>
         </div>
       </section>
-
-      {/* Testimonials */}
-      <Testimonials />
 
       {/* FAQs */}
       <section className="section-padding bg-white">
