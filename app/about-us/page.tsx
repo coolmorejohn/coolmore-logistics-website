@@ -1,11 +1,8 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+"use client";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    "Learn about Coolmore Logistics — a Memphis-based freight brokerage built on trust, transparency, and servant leadership.",
-};
+import Link from "next/link";
+import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 
 const values = [
   {
@@ -56,48 +53,70 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="page-hero">
         <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">About Us</h1>
-          <p className="text-xl md:text-2xl text-brand-accent font-medium">
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            About Us
+          </motion.h1>
+          <motion.p
+            className="text-xl md:text-2xl text-brand-accent font-medium"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             Our mission is to earn your trust one load at a time.
-          </p>
+          </motion.p>
         </div>
       </section>
 
       {/* Story */}
       <section className="section-padding bg-white">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-brand-navy mb-6">Who We Are</h2>
-          <p className="text-lg text-gray-600 leading-relaxed mb-6">
-            We have a results-driven culture because the job has to get done. At Coolmore
-            Logistics we do this through a direct, no-BS approach &mdash; when a challenge
-            arises, we will work through it with you in a direct and clear manner. Our
-            servant-leadership approach enables us to support our team and our partners so
-            that we are all successful together.
-          </p>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            We also know that there is more to each of us than you see in a single
-            interaction. Our goal is to build long-term relationships with our Shippers and
-            Carriers and have invested in the technology that allows us to seamlessly
-            integrate as your freight partner.
-          </p>
+          <FadeIn>
+            <h2 className="text-3xl font-bold text-brand-navy mb-6">Who We Are</h2>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              We have a results-driven culture because the job has to get done. At Coolmore
+              Logistics we do this through a direct, no-BS approach &mdash; when a challenge
+              arises, we will work through it with you in a direct and clear manner. Our
+              servant-leadership approach enables us to support our team and our partners so
+              that we are all successful together.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              We also know that there is more to each of us than you see in a single
+              interaction. Our goal is to build long-term relationships with our Shippers and
+              Carriers and have invested in the technology that allows us to seamlessly
+              integrate as your freight partner.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
       {/* Values */}
       <section className="section-padding bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-brand-navy text-center mb-14">What Drives Us</h2>
+          <FadeIn>
+            <h2 className="text-3xl font-bold text-brand-navy text-center mb-14">What Drives Us</h2>
+          </FadeIn>
           <div className="grid md:grid-cols-2 gap-8">
-            {values.map((value) => (
-              <div key={value.title} className="card flex gap-5">
-                <div className="shrink-0 w-14 h-14 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center">
-                  {value.icon}
+            {values.map((value, i) => (
+              <FadeIn key={value.title} delay={i * 0.1}>
+                <div className="card flex gap-5 group hover:scale-[1.02] transition-transform duration-300">
+                  <div className="shrink-0 w-14 h-14 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center group-hover:bg-brand-accent group-hover:text-white transition-colors duration-300">
+                    {value.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-brand-navy mb-2">{value.title}</h3>
+                    <p className="text-gray-600">{value.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-brand-navy mb-2">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
-                </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -105,15 +124,17 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="bg-brand-navy text-white section-padding">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Partner With Us</h2>
-          <p className="text-gray-300 text-lg mb-8">
-            Whether you&apos;re a shipper or a carrier, we&apos;re ready to earn your trust.
-          </p>
-          <Link href="/contact-us" className="btn-primary text-lg px-8 py-4">
-            Get in Touch
-          </Link>
-        </div>
+        <FadeIn>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Partner With Us</h2>
+            <p className="text-gray-300 text-lg mb-8">
+              Whether you&apos;re a shipper or a carrier, we&apos;re ready to earn your trust.
+            </p>
+            <Link href="/contact-us" className="btn-primary text-lg px-8 py-4">
+              Get in Touch
+            </Link>
+          </div>
+        </FadeIn>
       </section>
     </>
   );

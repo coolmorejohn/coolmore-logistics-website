@@ -1,11 +1,8 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Carriers",
-  description:
-    "Partner with Coolmore Logistics — we build long-term relationships, not one-and-done transactions.",
-};
+import Link from "next/link";
+import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 
 const sections = [
   {
@@ -40,50 +37,62 @@ const sections = [
 export default function CarriersPage() {
   return (
     <>
-      {/* Hero */}
       <section className="page-hero">
         <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Carriers</h1>
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            Carriers
+          </motion.h1>
+          <motion.p
+            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             We will do everything we can to support your drivers and your business as we
             partner together.
-          </p>
+          </motion.p>
         </div>
       </section>
 
-      {/* Sections */}
       <section className="section-padding bg-white">
         <div className="max-w-5xl mx-auto space-y-16">
           {sections.map((section, i) => (
-            <div
-              key={section.title}
-              className={`flex flex-col md:flex-row gap-8 items-start ${
-                i % 2 === 1 ? "md:flex-row-reverse" : ""
-              }`}
-            >
-              <div className="shrink-0 w-20 h-20 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center">
-                {section.icon}
+            <FadeIn key={section.title} direction={i % 2 === 0 ? "left" : "right"}>
+              <div
+                className={`flex flex-col md:flex-row gap-8 items-start ${
+                  i % 2 === 1 ? "md:flex-row-reverse" : ""
+                }`}
+              >
+                <div className="shrink-0 w-20 h-20 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center">
+                  {section.icon}
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-2xl font-bold text-brand-navy mb-4">{section.title}</h2>
+                  <p className="text-gray-600 text-lg leading-relaxed">{section.body}</p>
+                </div>
               </div>
-              <div className="flex-1">
-                <h2 className="text-2xl font-bold text-brand-navy mb-4">{section.title}</h2>
-                <p className="text-gray-600 text-lg leading-relaxed">{section.body}</p>
-              </div>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
       <section className="bg-brand-navy text-white section-padding">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Join Our Carrier Network</h2>
-          <p className="text-gray-300 text-lg mb-8">
-            We&apos;re always looking to grow our network with reliable carrier partners.
-          </p>
-          <Link href="/contact-us" className="btn-primary text-lg px-8 py-4">
-            Contact Us
-          </Link>
-        </div>
+        <FadeIn>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Join Our Carrier Network</h2>
+            <p className="text-gray-300 text-lg mb-8">
+              We&apos;re always looking to grow our network with reliable carrier partners.
+            </p>
+            <Link href="/contact-us" className="btn-primary text-lg px-8 py-4">
+              Contact Us
+            </Link>
+          </div>
+        </FadeIn>
       </section>
     </>
   );
