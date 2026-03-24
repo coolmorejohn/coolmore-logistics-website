@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 
 const contactInfo = [
   {
@@ -41,7 +42,6 @@ export default function ContactPage() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // For now, just show the confirmation. You can wire up an API route later.
     setSubmitted(true);
   }
 
@@ -149,6 +149,34 @@ export default function ContactPage() {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-accent focus:border-transparent outline-none transition resize-y"
                   />
                 </div>
+
+                {/* SMS Opt-In Consent */}
+                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="smsConsent"
+                      name="smsConsent"
+                      className="mt-1 h-4 w-4 rounded border-gray-300 text-brand-accent focus:ring-brand-accent"
+                    />
+                    <label htmlFor="smsConsent" className="text-sm text-gray-600 leading-relaxed">
+                      By checking this box, you agree to receive SMS/text messages from
+                      Coolmore Logistics at the phone number provided. Message frequency
+                      varies. Message and data rates may apply. Reply <strong>STOP</strong> to
+                      opt out at any time. Reply <strong>HELP</strong> for assistance. See
+                      our{" "}
+                      <Link href="/privacy-policy" className="text-brand-accent hover:underline">
+                        Privacy Policy
+                      </Link>{" "}
+                      and{" "}
+                      <Link href="/terms" className="text-brand-accent hover:underline">
+                        Terms of Service
+                      </Link>
+                      . Consent is not a condition of purchase.
+                    </label>
+                  </div>
+                </div>
+
                 <button type="submit" className="btn-primary w-full justify-center text-lg py-4">
                   Send Message
                 </button>

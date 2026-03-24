@@ -72,8 +72,16 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} Coolmore Logistics. All rights reserved.
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+          <span>&copy; {new Date().getFullYear()} Coolmore Logistics. All rights reserved.</span>
+          <div className="flex gap-4">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-white transition-colors">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
