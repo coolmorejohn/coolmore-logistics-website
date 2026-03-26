@@ -117,6 +117,12 @@ export default function PrivacyPolicyPage() {
             No Sharing with Third Parties
           </h3>
           <p className="text-gray-600 leading-relaxed">
+            No mobile information will be shared with third parties/affiliates for
+            marketing/promotional purposes. All the above categories exclude text messaging
+            originator opt-in data and consent; this information will not be shared with any
+            third parties.
+          </p>
+          <p className="text-gray-600 leading-relaxed mt-4">
             We do not sell, rent, or share your phone number or any personal information
             collected through our SMS program with third parties or affiliates for marketing
             purposes. Your information will only be shared with third parties when necessary
