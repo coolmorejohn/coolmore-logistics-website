@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
 
 interface Stat {
   value: number;
@@ -16,10 +15,31 @@ const stats: Stat[] = [
   { value: 98, suffix: "%", label: "On-Time Delivery" },
 ];
 
+function useInView(ref: React.RefObject<Element | null>) {
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsInView(true);
+        observer.unobserve(el);
+      }
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [ref]);
+
+  return isInView;
+}
+
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref);
 
   useEffect(() => {
     if (!isInView) return;
@@ -48,15 +68,32 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 }
 
 export default function StatsBar() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("fade-in-visible");
+          observer.unobserve(el);
+        }
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="bg-brand-navy py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
+          ref={ref}
+          className="fade-in fade-in-up grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4"
+          style={{ transitionDuration: "0.6s" }}
         >
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
@@ -68,7 +105,7 @@ export default function StatsBar() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

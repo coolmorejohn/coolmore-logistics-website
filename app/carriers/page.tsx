@@ -1,15 +1,20 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
+
+export const metadata: Metadata = {
+  title: "Carriers",
+  description:
+    "Join the Coolmore Logistics carrier network. We build long-term relationships, offer fair rates, and support your drivers and business.",
+};
 
 const sections = [
   {
     title: "Seamless Partner",
     body: "Our goal is to seamlessly partner with you to deliver the quality of services that drives the growth of our businesses together. We've invested in the technology to make this as streamlined as possible and provide transparency to our partners.",
     icon: (
-      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
       </svg>
     ),
@@ -18,7 +23,7 @@ const sections = [
     title: "Carrier Focused — Build Long-Term Relationships",
     body: "We strive to build long-term relationships with our carrier partners. We are not transactional. We know that trust takes time to build, and we want to earn yours.",
     icon: (
-      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
@@ -27,7 +32,7 @@ const sections = [
     title: "Your Success Drives Our Success",
     body: "We understand the fundamental truth that we cannot be successful without your success. We will do everything we can to support your drivers and your business as we partner together.",
     icon: (
-      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     ),
@@ -37,27 +42,10 @@ const sections = [
 export default function CarriersPage() {
   return (
     <>
-      <section className="page-hero">
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <motion.h1
-            className="text-4xl md:text-5xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            Carriers
-          </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            We will do everything we can to support your drivers and your business as we
-            partner together.
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        title="Carriers"
+        subtitle="We will do everything we can to support your drivers and your business as we partner together."
+      />
 
       <section className="section-padding bg-white">
         <div className="max-w-5xl mx-auto space-y-16">

@@ -1,8 +1,13 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Coolmore Logistics offers Full Truck Load (reefer, dry van, flatbed, over-dimensional), LTL, and expedited freight brokerage services.",
+};
 
 const services = [
   {
@@ -11,7 +16,7 @@ const services = [
     description:
       "Whether it's temperature-controlled produce, dry goods, steel on a flatbed, or an oversized piece of equipment, we have the carrier network and expertise to move your full truckload freight safely and on time.",
     icon: (
-      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 17h.01M12 17h.01M16 17h.01M3 13h18M3 17h18M5 9V5a2 2 0 012-2h10a2 2 0 012 2v4M3 13l2-4h14l2 4" />
       </svg>
     ),
@@ -23,7 +28,7 @@ const services = [
     description:
       "Don't need a full truck? Our LTL solutions provide cost-effective options for smaller shipments, with the same level of service and reliability you'd expect from a dedicated load.",
     icon: (
-      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
       </svg>
     ),
@@ -35,7 +40,7 @@ const services = [
     description:
       "When time is of the essence, our expedited service delivers. Dedicated capacity, real-time tracking, and proactive communication to ensure your freight arrives when it absolutely has to.",
     icon: (
-      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
@@ -46,29 +51,10 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="page-hero">
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <motion.h1
-            className="text-4xl md:text-5xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            Services
-          </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            Coolmore Logistics provides reliable capacity, fair pricing, and dependable
-            support. Let us provide your brokerage solution regardless of your service
-            required.
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        title="Services"
+        subtitle="Coolmore Logistics provides reliable capacity, fair pricing, and dependable support. Let us provide your brokerage solution regardless of your service required."
+      />
 
       {/* Services Detail */}
       <section className="section-padding bg-white">
