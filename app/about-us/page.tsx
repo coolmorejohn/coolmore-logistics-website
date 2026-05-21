@@ -1,8 +1,13 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Learn about Coolmore Logistics — a results-driven, Memphis-based freight brokerage built on servant leadership and long-term partnerships.",
+};
 
 const values = [
   {
@@ -10,7 +15,7 @@ const values = [
     description:
       "The job has to get done. We do this through a direct, no-BS approach — when a challenge arises, we will work through it with you in a direct and clear manner.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -20,7 +25,7 @@ const values = [
     description:
       "Our servant-leadership approach enables us to support our team and our partners so that we are all successful together.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
@@ -30,7 +35,7 @@ const values = [
     description:
       "We know that there is more to each of us than you see in a single interaction. Our goal is to build long-term relationships with our Shippers and Carriers.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
@@ -40,7 +45,7 @@ const values = [
     description:
       "We've invested in the technology that allows us to seamlessly integrate as your freight partner with real-time tracking, EDI, and digital paperwork.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
@@ -50,27 +55,11 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="page-hero">
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <motion.h1
-            className="text-4xl md:text-5xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            About Us
-          </motion.h1>
-          <motion.p
-            className="text-xl md:text-2xl text-brand-accent font-medium"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            Our mission is to earn your trust one load at a time.
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        title="About Us"
+        subtitle="Our mission is to earn your trust one load at a time."
+        subtitleClassName="text-xl md:text-2xl text-brand-accent font-medium"
+      />
 
       {/* Story */}
       <section className="section-padding bg-white">

@@ -1,7 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
+import HomeHero from "@/components/HomeHero";
 import FadeIn from "@/components/FadeIn";
 
 const services = [
@@ -9,7 +7,7 @@ const services = [
     title: "Full Truck Load",
     description: "Reefer, Dry Van, Flatbed, and Over Dimensional — we cover it all.",
     icon: (
-      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 17h.01M12 17h.01M16 17h.01M3 13h18M3 17h18M5 9V5a2 2 0 012-2h10a2 2 0 012 2v4M3 13l2-4h14l2 4" />
       </svg>
     ),
@@ -18,7 +16,7 @@ const services = [
     title: "LTL",
     description: "Cost-effective less-than-truckload solutions for smaller shipments.",
     icon: (
-      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
       </svg>
     ),
@@ -27,7 +25,7 @@ const services = [
     title: "Expedited",
     description: "Time-critical freight delivered fast with dedicated capacity.",
     icon: (
-      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
@@ -52,48 +50,7 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative bg-brand-navy text-white min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-navy via-brand-dark to-brand-accent/30" />
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-accent rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-400 rounded-full blur-3xl" />
-        </div>
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Our Partners, Your Freight.{" "}
-            <span className="bg-gradient-to-r from-brand-accent to-blue-400 bg-clip-text text-transparent">
-              Delivered Together.
-            </span>
-          </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Reliable capacity, fair pricing, and dependable support for every shipment.
-          </motion.p>
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Link href="/contact-us" className="btn-primary text-lg px-8 py-4">
-              Get a Quote
-            </Link>
-            <Link href="/services" className="btn-outline text-lg px-8 py-4">
-              Our Services
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      <HomeHero />
 
       {/* About Preview */}
       <section className="section-padding bg-white">
@@ -116,7 +73,7 @@ export default function HomePage() {
               className="text-brand-accent font-semibold hover:underline inline-flex items-center gap-2"
             >
               Learn More
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
@@ -179,7 +136,7 @@ export default function HomePage() {
                 className="text-brand-accent font-semibold hover:underline inline-flex items-center gap-2"
               >
                 Learn More
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
@@ -201,7 +158,7 @@ export default function HomePage() {
                 className="text-brand-accent font-semibold hover:underline inline-flex items-center gap-2"
               >
                 Learn More
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
@@ -227,6 +184,7 @@ export default function HomePage() {
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const companies = [
   "Partner 1",
@@ -12,14 +12,32 @@ const companies = [
 ];
 
 export default function TrustedBy() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("fade-in-visible");
+          observer.unobserve(el);
+        }
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="py-12 bg-white border-y border-gray-100">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+        <div
+          ref={ref}
+          className="fade-in fade-in-none"
+          style={{ transitionDuration: "0.8s" }}
         >
           <p className="text-center text-sm font-medium text-gray-400 uppercase tracking-widest mb-8">
             Trusted By
@@ -34,7 +52,7 @@ export default function TrustedBy() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

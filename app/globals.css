@@ -2,13 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+.fade-in {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: ease-out;
+}
+
+.fade-in-up { transform: translateY(40px); }
+.fade-in-down { transform: translateY(-40px); }
+.fade-in-left { transform: translateX(40px); }
+.fade-in-right { transform: translateX(-40px); }
+.fade-in-none { transform: none; }
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.hero-animate {
+  opacity: 0;
+  animation: hero-fade-up ease-out forwards;
+}
+
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .hero-animate {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
 }
 
 @layer components {

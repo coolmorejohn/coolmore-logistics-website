@@ -1,8 +1,13 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import PageHero from "@/components/PageHero";
 import FadeIn from "@/components/FadeIn";
+
+export const metadata: Metadata = {
+  title: "FAQs",
+  description:
+    "Frequently asked questions about Coolmore Logistics freight brokerage services, carrier network, and shipping capabilities.",
+};
 
 const faqs = [
   {
@@ -22,26 +27,11 @@ const faqs = [
 export default function FaqsPage() {
   return (
     <>
-      <section className="page-hero">
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <motion.h1
-            className="text-4xl md:text-5xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            FAQs
-          </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl text-gray-300"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            Common questions about working with Coolmore Logistics.
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        title="FAQs"
+        subtitle="Common questions about working with Coolmore Logistics."
+        subtitleClassName="text-lg md:text-xl text-gray-300"
+      />
 
       <section className="section-padding bg-white">
         <div className="max-w-3xl mx-auto space-y-4">
@@ -55,6 +45,7 @@ export default function FaqsPage() {
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -83,6 +74,24 @@ export default function FaqsPage() {
           </div>
         </FadeIn>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.a,
+              },
+            })),
+          }),
+        }}
+      />
     </>
   );
 }

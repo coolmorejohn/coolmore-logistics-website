@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ContentData {
   stats: {
@@ -48,6 +48,55 @@ const defaultData: ContentData = {
 export default function ContentIntakePage() {
   const [data, setData] = useState<ContentData>(defaultData);
   const [copied, setCopied] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+  const [password, setPassword] = useState("");
+  const [authError, setAuthError] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("admin_unlocked") === "1") {
+      setUnlocked(true);
+    }
+  }, []);
+
+  if (!unlocked) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const expected = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+            if (!expected || password === expected) {
+              setUnlocked(true);
+              sessionStorage.setItem("admin_unlocked", "1");
+            } else {
+              setAuthError(true);
+            }
+          }}
+          className="bg-white rounded-2xl shadow-lg p-8 max-w-sm w-full"
+        >
+          <h1 className="text-xl font-bold text-gray-900 mb-2">Admin Access</h1>
+          <p className="text-sm text-gray-500 mb-6">Enter the password to continue.</p>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => { setPassword(e.target.value); setAuthError(false); }}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-gray-900 mb-4"
+            placeholder="Password"
+            autoFocus
+          />
+          {authError && (
+            <p className="text-red-600 text-sm mb-4">Incorrect password.</p>
+          )}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+          >
+            Enter
+          </button>
+        </form>
+      </div>
+    );
+  }
 
   function updateStat(field: keyof ContentData["stats"], value: string) {
     setData((prev) => ({

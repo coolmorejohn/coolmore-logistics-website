@@ -27,7 +27,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
           {navLinks.map((link) => {
             const isActive =
               link.href === "/"
@@ -54,13 +54,14 @@ export default function Header() {
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden text-white p-2"
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           {menuOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           )}
@@ -69,7 +70,7 @@ export default function Header() {
 
       {/* Mobile Nav */}
       {menuOpen && (
-        <nav className="lg:hidden bg-brand-navy border-t border-white/10 px-6 pb-6">
+        <nav className="lg:hidden bg-brand-navy border-t border-white/10 px-6 pb-6" aria-label="Mobile navigation">
           {navLinks.map((link) => {
             const isActive =
               link.href === "/"
